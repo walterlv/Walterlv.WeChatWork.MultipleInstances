@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
@@ -31,11 +32,12 @@ namespace Walterlv.Tools
                     @"SOFTWARE\Tencent\WXWork",
                     "multi_instances",
                     2);
-                Process.Start(new ProcessStartInfo
+                var process = Process.Start(new ProcessStartInfo
                 {
                     FileName = wxPath,
                     UseShellExecute = false,
                 });
+                process?.WaitForExit(5000);
             }
         }
     }
